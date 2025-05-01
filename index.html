@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pulse Relay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #000;
+      color: #aaddff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #fff;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #00aaff;
+    }
+
+    .relay-button {
+      background-color: #111;
+      color: #aaddff;
+      border: 2px solid #00aaff;
+      padding: 20px 60px;
+      font-size: 22px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #00aaff33;
+    }
+
+    .relay-button:hover {
+      background-color: #00aaff;
+      color: #000;
+      box-shadow: 0 0 30px #00aaff;
+    }
+  </style>
+</head>
+<body>
+  <h1>PULSE RELAY</h1>
+  <button class="relay-button" onclick="pulseRelay()">Relay ON (0.5s)</button>
+
+  <script>
+    const channelID = '2940658'; // Replace with your actual channel ID
+    const apiKey = 'Y9UZSEKQI52AY8TO'; // ThingSpeak Write API Key
+
+    function pulseRelay() {
+      fetch(`https://api.thingspeak.com/update?api_key=${apiKey}&field1=1`)
+        .then(res => {
+          if (res.ok) alert("Relay pulse sent.");
+          else alert("Failed to send pulse.");
+        });
+    }
+  </script>
+</body>
+</html>
